@@ -23,6 +23,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>us.dontcareabout</groupId>
+			<artifactId>gf</artifactId>
+			<version>0.0.2</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-servlet</artifactId>
 			<version>${com.google.gwt.version}</version>
