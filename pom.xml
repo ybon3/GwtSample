@@ -43,6 +43,12 @@
 			<artifactId>gxt-chart</artifactId>
 			<version>${com.sencha.gxt.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.fluttercode.datafactory</groupId>
+			<artifactId>datafactory</artifactId>
+			<version>0.8</version>
+			<type>jar</type>
+		</dependency>
 	</dependencies>
 	<build>
 		<!-- Generate compiled stuff in the folder used for developing mode -->
