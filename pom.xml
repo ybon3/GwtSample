@@ -43,6 +43,12 @@
 			<artifactId>gxt-chart</artifactId>
 			<version>${com.sencha.gxt.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>us.dontcareabout</groupId>
+			<artifactId>gf</artifactId>
+			<version>0.0.2</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<!-- Generate compiled stuff in the folder used for developing mode -->

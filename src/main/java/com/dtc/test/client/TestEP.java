@@ -2,6 +2,8 @@ package com.dtc.test.client;
 
 import java.util.Date;
 
+import com.dtc.test.client.event.FileUploadEvent;
+import com.dtc.test.client.event.FileUploadHandler;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.RepeatingCommand;
@@ -32,19 +34,29 @@ public class TestEP implements EntryPoint {
 				start();
 			}
 		});
-		
+
 		VerticalLayoutContainer vc = new VerticalLayoutContainer();
 		vc.add(dateField);
 		vc.add(button);
 
 		RootPanel.get().add(vc);
+
+		//WebSocket example
+		new WSClient().open();
+
+		UiEventCenter.addFileUploadHandler(new FileUploadHandler() {
+			@Override
+			public void onFileUpload(FileUploadEvent event) {
+				GWT.log("檔案已經上傳完畢");
+			}
+		});
 	}
-	
+
 	private void start() {
 		GWT.log("開始啦開始啦～～～～");
 		counter = 0;
 		rpcFinish = false;
-		
+
 		//發 RPC
 		rpc.before(dateField.getValue(), new AsyncCallback<Boolean>() {
 			@Override
@@ -52,14 +64,14 @@ public class TestEP implements EntryPoint {
 				GWT.log(result + "你的時間比較" + (result ? "早" : "晚"));
 				rpcFinish = true;
 			}
-			
+
 			@Override
 			public void onFailure(Throwable caught) {
 				GWT.log("出問題啦！訊息：" + caught.getMessage());
 				rpcFinish = true;
 			}
 		});
-		
+
 		//每隔 1 秒鐘寫一行 log 以顯示出 async 的行為
 		Scheduler.get().scheduleFixedPeriod(new RepeatingCommand() {
 			@Override
@@ -68,6 +80,6 @@ public class TestEP implements EntryPoint {
 				GWT.log("第 " + counter + " 次 @ " + format.format(new Date()));
 				return !rpcFinish;
 			}
-		}, 1000);		
+		}, 1000);
 	}
 }
